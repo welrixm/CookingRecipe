@@ -1,0 +1,53 @@
+﻿<Page x:Class="Coo.Pages.SpisokBlud"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Coo.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SpisokBlud">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+            <Label>Категория</Label>
+            <ComboBox Name="CmbCategory" DisplayMemberPath="Name" SelectionChanged="CmbCategory_SelectionChanged"></ComboBox>
+            <Label Margin="35,0,0,0">Наименование:</Label>
+            <TextBox x:Name="TxtSearch" TextChanged="TxtSearch_TextChanged" Style="{StaticResource TxtBox}"></TextBox>
+        </StackPanel>
+
+        <ListView Grid.Row="2" x:Name="LViewDishes" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="LViewDishes_SelectionChanged_1">
+            <ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                </WrapPanel>
+            </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="250" Height="200">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image Grid.RowSpan="2" Source="{Binding Photo}" Stretch="UniformToFill"></Image>
+                        <Grid Grid.Row="1" Background="Black" Opacity="0.5"></Grid>
+                        <TextBlock Grid.Row="1" Foreground="White" FontSize="18" Text="{Binding Name}" TextAlignment="Center" TextWrapping="Wrap"></TextBlock>
+                        <TextBlock Grid.Row="1" Foreground="White" FontSize="14" VerticalAlignment="Bottom" TextAlignment="Center" Margin="0,5" 
+                                   Text="{Binding ServingPrice, StringFormat={}1 порция\={0:N2} руб}" FontStyle="Italic"></TextBlock>
+                        <!--<Button x:Name="Recipe" Content="Рецепт"  Margin="5" Padding="5" Click="Recipe_Click"></Button>-->
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    </Grid>
+</Page>
